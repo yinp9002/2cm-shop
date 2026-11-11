@@ -1,16 +1,21 @@
 import Link from "next/link";
 import { AddToCartButton } from "@/components/add-to-cart-button";
-import { ProductArt } from "@/components/product-art";
+import { ProductImage } from "@/components/product-image";
 import { categories, type Product } from "@/lib/catalog";
 import { formatHkd } from "@/lib/format";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  line,
+}: {
+  product: Product;
+  line?: string;
+}) {
   const category = categories[product.category];
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-border bg-card shadow-[0_10px_30px_rgba(28,25,22,0.05)]">
       <Link href={`/products/${product.slug}`} className="block">
-        <ProductArt product={product} className="aspect-square" />
-        <span className="sr-only">Placeholder image for {product.name}</span>
+        <ProductImage product={product} className="aspect-square" />
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-4 md:p-5">
         <p className="text-xs font-semibold tracking-[0.14em] text-muted-foreground uppercase">
@@ -21,6 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
             {product.name}
           </Link>
         </h3>
+        <p className="text-sm leading-relaxed text-[#3f3a34]">{line ?? product.shortLine}</p>
         <p className="text-lg font-semibold" data-price={product.price}>
           {formatHkd(product.price)}
         </p>

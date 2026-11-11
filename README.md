@@ -26,4 +26,4 @@ npx next dev --port 43123
 - `npm run start` — serve the production build
 - `npm run lint` — run ESLint
 
-The cart is stored in the browser. Product photos are labeled placeholders.
+The cart is stored in the browser. Product photos are the supplied demo images.

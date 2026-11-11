@@ -22,7 +22,7 @@ export function productPage(slug: string) {
   const product = found;
   const metadata: Metadata = {
     title: product.name,
-    description: `${product.name}. ${formatHkd(product.price)}.`,
+    description: `${product.name}. ${product.shortLine} ${formatHkd(product.price)}.`,
   };
   function Page() {
     return <ProductView product={product} />;

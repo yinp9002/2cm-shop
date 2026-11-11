@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { ContactDetails } from "@/components/contact-details";
 import { Container } from "@/components/container";
-import { ProductArt } from "@/components/product-art";
-import { ProductGrid } from "@/components/product-card";
+import { ProductCard } from "@/components/product-card";
+import { ProductImage } from "@/components/product-image";
 import { ShopButtonLink } from "@/components/shop-button";
 import { buttonVariants } from "@/components/ui/button";
 import {
   categories,
   categoryOrder,
+  featuredPicks,
+  getProduct,
   getProductsByCategory,
-  products,
 } from "@/lib/catalog";
 import { cn } from "cn";
 
@@ -55,7 +56,7 @@ export default function HomePage() {
                     </span>
                   </span>
                   {preview ? (
-                    <ProductArt product={preview} labeled={false} className="size-20 rounded-2xl" />
+                    <ProductImage product={preview} sizes="80px" className="size-20 rounded-2xl" />
                   ) : null}
                 </Link>
               );
@@ -119,17 +120,23 @@ export default function HomePage() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               <h2 className="font-heading text-4xl tracking-tight md:text-5xl">Featured picks</h2>
-              <p className="mt-4 text-lg leading-relaxed">
-                A first look at the devices in this shop. Product photos are placeholders.
-              </p>
+              <p className="mt-4 text-lg leading-relaxed">A first look at the devices in this shop.</p>
             </div>
             <ShopButtonLink href="/shop" variant="outline">
               View all
             </ShopButtonLink>
           </div>
-          <div className="mt-8">
-            <ProductGrid products={products} />
-          </div>
+          <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {featuredPicks.map((pick) => {
+              const product = getProduct(pick.slug);
+              if (!product) return null;
+              return (
+                <li key={pick.slug}>
+                  <ProductCard product={product} line={pick.line} />
+                </li>
+              );
+            })}
+          </ul>
         </Container>
       </section>
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DemoNote } from "@/components/demo-note";
-import { ProductArt } from "@/components/product-art";
+import { ProductImage } from "@/components/product-image";
 import { QuantityField } from "@/components/quantity-field";
 import { ShopButtonLink } from "@/components/shop-button";
 import { Button } from "@/components/ui/button";
@@ -51,8 +51,11 @@ export function CartView() {
                 className="grid grid-cols-[5.5rem_1fr] gap-4 rounded-[1.4rem] border border-border bg-card p-3 sm:grid-cols-[6.5rem_1fr_auto] sm:p-4"
               >
                 <Link href={`/products/${product.slug}`} className="block">
-                  <ProductArt product={product} className="aspect-square rounded-2xl" />
-                  <span className="sr-only">Placeholder image for {product.name}</span>
+                  <ProductImage
+                    product={product}
+                    sizes="96px"
+                    className="aspect-square rounded-2xl"
+                  />
                 </Link>
                 <div className="min-w-0">
                   <p className="text-xs font-semibold tracking-[0.14em] text-muted-foreground uppercase">

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
-import { ProductArt } from "@/components/product-art";
+import { ProductImage } from "@/components/product-image";
 import { ProductGrid } from "@/components/product-card";
 import { ProductPurchase } from "@/components/product-purchase";
-import { categories, getProductsByCategory, type Product } from "@/lib/catalog";
+import { categories, getProductsByCategory, shippingNote, type Product } from "@/lib/catalog";
 import { formatHkd } from "@/lib/format";
 
 export function ProductView({ product }: { product: Product }) {
@@ -33,23 +33,25 @@ export function ProductView({ product }: { product: Product }) {
       </nav>
 
       <div className="mt-6 grid items-start gap-8 lg:grid-cols-2">
-        <figure>
-          <ProductArt product={product} className="aspect-square rounded-[2rem]" />
-          <figcaption className="mt-3 text-sm text-muted-foreground">
-            Placeholder image for {product.name}.
-          </figcaption>
-        </figure>
+        <ProductImage
+          product={product}
+          priority
+          sizes="(min-width: 1024px) 45vw, 90vw"
+          className="aspect-square rounded-[2rem]"
+        />
         <div>
           <p className="text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
             {category.name}
           </p>
           <h1 className="mt-3 font-heading text-4xl tracking-tight md:text-5xl">{product.name}</h1>
+          <p className="mt-4 text-lg leading-relaxed">{product.shortLine}</p>
           <p className="mt-4 font-heading text-4xl" data-price={product.price}>
             {formatHkd(product.price)}
           </p>
           <ProductPurchase slug={product.slug} />
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">Market-reference demo listing.</p>
-          <p className="mt-2 text-sm leading-relaxed">Shipping & returns: To be confirmed before launch.</p>
+          <h2 className="mt-8 font-heading text-2xl tracking-tight">Details</h2>
+          <p className="mt-3 leading-relaxed">{product.details}</p>
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{shippingNote}</p>
           <p className="mt-4">
             <Link href={category.href} className="text-sm font-semibold underline-offset-4 hover:underline">
               View collection
