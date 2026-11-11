@@ -95,7 +95,7 @@ export const products: Product[] = [
     shortLine: "True wireless earphones with adaptive noise cancelling and long battery life.",
     details:
       "Adaptive ANC 2.0 and 11mm drivers, with Bluetooth 5.3 multipoint connection. Up to 10 hours per charge, or 50 hours with the case (up to 8 hours with ANC on, 40 hours with the case). The earbuds are IPX4 water-resistant.",
-    image: "/products/soundcore-liberty-4-nc.jpg",
+    image: "/products/soundcore-liberty-4-nc.png",
   },
   {
     slug: "sony-wf-1000xm5",
