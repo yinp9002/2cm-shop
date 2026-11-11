@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "cn";
+import { withBasePath } from "@/lib/base-path";
 import type { Product } from "@/lib/catalog";
 
 export function ProductImage({
@@ -16,7 +17,7 @@ export function ProductImage({
   return (
     <div className={cn("relative overflow-hidden bg-[#f7f4ee]", className)}>
       <Image
-        src={product.image}
+        src={withBasePath(product.image)}
         alt={product.name}
         fill
         sizes={sizes}
